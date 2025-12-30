@@ -1,0 +1,8 @@
+{
+  "description": "Hide-top-bar",
+  "name": "Hide-Top-Bar",
+  "shell-version": ["45", "46", "47", "48", "49"],
+  "url": "https://",
+  "uuid": "hide-top-bar@hide.top.bar",
+  "version": 1
+}

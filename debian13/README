@@ -1,0 +1,58 @@
+1. Build Debian 13 image
+   a. Run debian13.sh
+   b. Wait for the image, debian13.img
+
+2. Make a bootable USB drive
+   a. Run usb-boot.sh
+   b. Wait for the image, usb-boot.img
+   c. Flash usb-boot.img to a USB drive
+      - dd if=usb-boot.img of=/dev/sdb bs=4M status=progress
+   d. Resize the data partition
+      - parted /dev/sdb
+        > print (Choose 'Fix' if prompted) 
+        > resizepart 3 100%
+        > print (check the size!)
+        > quit
+      - mkfs.exfat -L data /dev/sdb3
+   e. Mount /dev/sdb3 to /media/usb
+   e. Copy debian13.img to /media/usb
+   f. Copy Android.tar.gz to /media/usb
+   h. umount /media/usb
+
+3. Prepare SBC
+   a. Boot SBC with the bootable USB
+   b. Mount the data partition: mount /dev/sdb3 /media
+      - mount /dev/sdb3 /media
+   c. cd /media
+   d. Flash debian13.img to SBC drive
+      - dd if=debian13.img of=/dev/sda bs=4M status=progress
+   f. Resize the data partition
+      - parted /dev/sda
+        > print (Choose 'Fix' if prompted)
+        > resizepart 3 100%
+        > print (to check the size)
+        > quit
+      - resize2fs /dev/sda3
+   g. Unmount and remove USB
+   h. Reboot with the disk drive (/dev/sda)
+
+4. Customize Debian
+   a. Suppress gnome warning dialog
+      - gsettings set org.gnome.mutter check-alive-timeout 0
+   a. Hide top bar
+      - Alt-F2
+      - Type 'gnome-extensions-app' and enter
+      - Enable 'Extensions' and 'Hide-Top-Bar'
+
+4. Install Android emulator
+   a. If not mounted, mount the USB (/media/debian/data)
+   b. Download Android SDK:
+      https://github.com/youngmin-kim-tfs/gsd-debian-aosp/releases/download/android-sdk/android.tgz
+   b. Untar android.tgz to /dev/sda3
+      - sudo tar zxvf /media/debian/data/android.tgz -C /data
+   c. Change to /data/android/avd
+   d. In SeqStudio.ini, set path to /data/android/avd/SeqStudio.avd
+   e. Launch the emulator:
+      - ANDROID_SDK_HOME=/data/android sdk/emulator/emulator -avd SeqStudio -no-snapshot
+
+
