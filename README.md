@@ -80,10 +80,11 @@
 ## IS on Windows Ubuntu
   1. Open Ubuntu shell on Windows and obtain the Ubuntu IP address, e.g. 172.20.40.231
   2. Install IS on Ubuntu and follow the above 'IS data prep'
-  3. Open Windows Powershell and enable portproxy
+  3. Allow Inbound for ports 2323 and 7000 in Windows Firewall
+  4. Open Windows Powershell and enable portproxy
      + netsh interface portproxy v4tov4 listenport=2323 listenaddress=0.0.0.0 connectport=2323 connectaddress=172.20.40.231
      + netsh interface portproxy v4tov4 listenport=7000 listenaddress=0.0.0.0 connectport=7000 connectaddress=172.20.40.231
      + netsh interface portproxy show all
      + netsh interface portproxy reset ---> to stop
-  4. Start the IS
+  5. Start the IS
      + sudo python2 instrument.py
