@@ -67,6 +67,16 @@
       + adb pull /data/data/com.lifetech.monarch.mainapp/cache/dc.log ./
   16. Rename dc.log to dc_J6_frag.log
 
+## Changing IS IP address in eGUI
+  1. adb root
+  2. adb shell
+  3. cd /data/data/com.lifetech.monarch.mainapp/shared_prefs
+  4. vi com.lifetech.monarch.mainapp_preferences.xml
+  5. go to <string name="instrument_server_ip_address_pref_key">10.0.2.2</string>
+  6. Change the IP address to a new IP address
+  7. Save and exit vi
+  8. chmod 666 com.lifetech.monarch.mainapp_preferences.xml
+
 ## IS on Windows Ubuntu
   1. Open Ubuntu shell on Windows and obtain the Ubuntu IP address, e.g. 172.20.40.231
   2. Install IS on Ubuntu and follow the above 'IS data prep'
