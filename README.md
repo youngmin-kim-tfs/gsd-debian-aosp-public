@@ -72,7 +72,7 @@
   2. adb shell
   3. cd /data/data/com.lifetech.monarch.mainapp/shared_prefs
   4. vi com.lifetech.monarch.mainapp_preferences.xml
-  5. go to <string name="instrument_server_ip_address_pref_key">10.0.2.2</string>
+  5. go to \<string name="instrument_server_ip_address_pref_key"\>10.0.2.2\</string\>
   6. Change the IP address to a new IP address
   7. Save and exit vi
   8. chmod 666 com.lifetech.monarch.mainapp_preferences.xml
