@@ -1,0 +1,13 @@
+[Unit]
+Description=Custom NIC naming service
+DefaultDependencies=no
+After=systemd-udevd.service
+Before=network-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/nic-namer.sh
+ExecStartPost=udevadm control --reload-rules
+
+[Install]
+WantedBy=multi-user.target

@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+umount rootfs/data
 umount rootfs/boot/efi
 umount rootfs/dev/pts
 umount rootfs/dev
