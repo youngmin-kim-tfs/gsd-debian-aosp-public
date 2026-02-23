@@ -13,6 +13,11 @@ chroot "${ROOTDIR}" ln -s /etc/systemd/system/nic-namer.service \
   /etc/systemd/system/multi-user.target.wants/nic-namer.service
 chroot "${ROOTDIR}" chmod 644 /etc/systemd/system/nic-namer.service
 
+# Copy the instrumentserver.service and enable it
+chroot "${ROOTDIR}" ln -s /etc/systemd/system/instrumentserver.service \
+  /etc/systemd/system/multi-user.target.wants/instrumentserver.service
+chroot "${ROOTDIR}" chmod 644 /etc/systemd/system/instrumentserver.service
+
 # Create users
 # Placeholder for instrument specific user creation
 

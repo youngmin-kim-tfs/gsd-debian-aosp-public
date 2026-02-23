@@ -1,0 +1,15 @@
+[Unit]
+Description=InstrumentServer service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/data/opt/InstrumentServer
+ExecStart=/usr/bin/python3 /data/opt/InstrumentServer/instrument.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
