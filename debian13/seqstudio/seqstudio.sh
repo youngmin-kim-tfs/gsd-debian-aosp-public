@@ -3,6 +3,9 @@ set -x # enable printing
 
 pwd
 
+# Create users
+# Placeholder for instrument specific user creation
+
 cp -r seqstudio/overlay/* "${ROOTDIR}"/
 
 # Copy the NIC renaming script
@@ -18,8 +21,12 @@ chroot "${ROOTDIR}" ln -s /etc/systemd/system/instrumentserver.service \
   /etc/systemd/system/multi-user.target.wants/instrumentserver.service
 chroot "${ROOTDIR}" chmod 644 /etc/systemd/system/instrumentserver.service
 
-# Create users
-# Placeholder for instrument specific user creation
+# SSH
+chroot "${ROOTDIR}" chmod 644 /root/.ssh/authorized_keys
+chroot "${ROOTDIR}" chmod 700 /root/.ssh
+chroot "${ROOTDIR}" chmod 644 /home/kiosk/.ssh/authorized_keys
+chroot "${ROOTDIR}" chmod 700 /home/kiosk/.ssh
+chroot "${ROOTDIR}" chown -R kiosk:kiosk /home/kiosk/.ssh
 
 # SeqStudio specific package
 chroot "${ROOTDIR}" dpkg --add-architecture i386

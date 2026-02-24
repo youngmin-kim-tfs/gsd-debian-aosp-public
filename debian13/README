@@ -32,6 +32,7 @@
         > resizepart 3 100%
         > print (to check the size)
         > quit
+      - e2fsck -f /dev/sda3
       - resize2fs /dev/sda3
    g. Unmount and remove USB
    h. Reboot with the disk drive (/dev/sda)
