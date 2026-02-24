@@ -12,10 +12,10 @@ pkill -f "$JAR" 2>/dev/null
 
 cd $ANDROID
 
-start_emulator() {
-    ANDROID_SDK_HOME=$ANDROID $ANDROID/sdk/emulator/emulator -avd SeqStudio -no-snapshot &
-    EMULATOR_PID=$!
+ANDROID_SDK_HOME=$ANDROID $ANDROID/sdk/emulator/emulator -avd SeqStudio -no-snapshot &
+EMULATOR_PID=$!
 
+wait_for_emulator() {
     $ADB wait-for-device
     if [ $? -ne 0 ]; then
         echo "Timeout waiting for emulator"
@@ -40,8 +40,7 @@ set_props() {
 
     $ADB -e shell pm disable com.android.systemui
     if [ $? -eq 0 ]; then
-        touch "$FIRST_FLAG"
-	echo "systemui disabled"
+        echo "systemui disabled"
     else
         echo "Failed to disable systemui"
     fi
@@ -54,30 +53,30 @@ set_props() {
     fi
 }
 
-start_emulator
+wait_for_emulator
 set_props
 
 # Check if first boot
 if [ ! -f "$FIRST_FLAG" ]; then
     echo "Install $APK"
+    sleep 2
     $ADB install $APK
     if [ $? -eq 0 ]; then
         echo "$APK installed"
     else
         echo "Failed to install $APK"
-	exit 1
+        exit 1
     fi
-    # restart the emulator
-    pkill -f qemu 2>/dev/null
-    start_emulator
+    touch "$FIRST_FLAG"
+    # reboot Android
+    $ADB reboot
+    sleep 10
+    wait_for_emulator
     set_props
 fi
-sleep 2
 
 # start 3200.jar
 java -jar "$JAR" &
 
 # start the mainapp
 $ADB shell am start com.lifetech.monarch.mainapp/.SplashActivity
-
-
