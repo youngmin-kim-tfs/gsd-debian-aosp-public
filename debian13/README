@@ -38,9 +38,8 @@
    h. Reboot with the disk drive (/dev/sda)
 
 4. Install Android emulator
-   a. If not mounted, mount the USB (/media/debian/data)
-   b. Download Android SDK:
-      https://github.com/youngmin-kim-tfs/gsd-debian-aosp/releases/download/android-sdk/android.tgz
+   a. Download Android SDK (android.tgz) from:
+      https://lsg-thermofisher.atlassian.net/wiki/spaces/MONARCH/pages/98075180/Builds
    b. Untar android.tgz to /data/opt
       - sudo tar zxvf /media/debian/data/android.tgz -C /data/opt
    c. Change to /data/opt/android/avd
@@ -53,27 +52,29 @@
    c. Open /data/opt/InstrumentServer/Config/system.ini
       - Change devicemask to DEV:sd[b-z]*
    d. Open /data/opt/InstrumentServer/Config/locations.ini
-      - Change [experiments] path to /shared/experiments
+      - Change [experiments] path to /data/experiments
    e. Launch IS:
       - sudo /bin/python3 /data/opt/InstrumentServer/instrument.py
 
 6. Run 3200.jar
    a. Download 3200.jar:
-      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/3200.jar
+      http://10.253.253.198/job/Monarch-DataCollection-AOSP/lastSuccessfulBuild/artifact/3200/build/libs/3200.jar
    b. Move 3200.jar to /data/opt/Monarch/
 
 7. Prepare KB
    a. Download KB:
-      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/kb.tar.gz
+      http://10.253.253.198/job/Monarch-KB/lastSuccessfulBuild/artifact/Basecaller-KB%201.4.2.9_patch.tar.gz
    b. Untar kb.tar.gz to /data/opt/Monarch/KB/
 
 8. Download DataCollection SW
-   a. Download DataCollection SW:
-      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/DataCollection-release-1.10-1-6317120.apk
+   a. Download DataCollection SW from:
+      http://10.253.253.198/job/Monarch-DataCollection-AOSP/
    b. Move apk to /data/opt/Monarch/
 
 9. Run Monarch
     a. Open terminal and change to /data/opt/Monarch
+    b. Open /data/opt/Monarch/launcher.sh
+    c. Check and change APK file name, accordinlgy, in launcher.sh
     b. Run Monarch:
        - ./launcher.sh
 
