@@ -53,7 +53,16 @@
       - Change devicemask to DEV:sd[b-z]*
    d. Open /data/opt/InstrumentServer/Config/locations.ini
       - Change [experiments] path to /data/experiments
-   e. Launch IS:
+      - Change [usbdrive] path to /media/usb0
+      - Change [android] path to /data/opt/android
+   e. Open SCPIServer/scpiSession.py
+      - Change to:
+        key = hmac.new(secret, challenge.endoe('utf-8'), md5).hexdigest()
+   f. Open /data/opt/InstrumentServer/Methods/android.scpi
+      - Comment out: ===> NOTE: this needs to be done after emulator launched
+        ### Hostname update
+        ### Timezone update
+   g. Launch IS:
       - sudo /bin/python3 /data/opt/InstrumentServer/instrument.py
 
 6. Run 3200.jar
