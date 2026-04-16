@@ -1,0 +1,11 @@
+[Unit]
+Description=Android emulator
+After=splash.service
+Wants=splash.service
+
+[Service]
+Type=simple
+ExecStart=/data/opt/Monarch/post-launch.sh
+
+[Install]
+WantedBy=kiosk-session.target

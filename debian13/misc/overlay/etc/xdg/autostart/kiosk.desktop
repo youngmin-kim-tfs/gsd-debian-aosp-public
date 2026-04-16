@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=kiosk
+Exec=gnome-terminal
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true

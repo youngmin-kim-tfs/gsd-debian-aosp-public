@@ -1,0 +1,26 @@
+[org/gnome/shell]
+enabled-extensions=['kiosk-shell@kiosk.shell']
+
+[org/gnome/mutter]
+dynamic-workspaces=false
+check-alive-timeout=uint32 0
+
+[org/gnome/desktop/media-handling]
+automount=false
+
+[org/gnome/desktop/wm/preferences]
+num-workspaces=1
+
+[org/gnome/desktop/interface]
+enable-hot-corners=false
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=0
+sleep-inactive-ac-type='nothing'
+lid-close-ac-action='ignore'
+power-button-action='ignore'
+idle-dim=true
+idle-brightness=30
+
+[org/gnome/desktop/session]
+idle-delay=uint32 0

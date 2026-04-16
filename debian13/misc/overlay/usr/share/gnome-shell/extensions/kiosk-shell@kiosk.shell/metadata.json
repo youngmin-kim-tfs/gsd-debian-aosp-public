@@ -1,0 +1,8 @@
+{
+  "description": "Kiosk shell",
+  "name": "Kiosk Shell",
+  "shell-version": ["45", "46", "47", "48", "49"],
+  "url": "https://kiosk.shell",
+  "uuid": "kiosk-shell@kiosk.shell",
+  "version": 1
+}

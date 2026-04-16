@@ -1,0 +1,5 @@
+[Unit]
+Description=Kiosk session target
+BindsTo=kiosk-session.target
+Before=kiosk-session.target
+

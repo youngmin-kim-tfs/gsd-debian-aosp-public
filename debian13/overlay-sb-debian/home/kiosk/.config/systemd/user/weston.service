@@ -1,0 +1,15 @@
+[Unit]
+Description=Weston service
+Requires=weston.socket
+After=weston.socket
+
+[Service]
+Type=notify
+TimeoutStartSec=60
+WatchdogSec=20
+StandardOutput=journal
+StandardError=journal
+ExecStart=/usr/bin/weston --modules=systemd-notify.so
+
+[Install]
+WantedBy=kiosk-session.target

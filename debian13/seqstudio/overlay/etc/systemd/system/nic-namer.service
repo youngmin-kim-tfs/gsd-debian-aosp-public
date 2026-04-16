@@ -7,7 +7,7 @@ Before=network-pre.target
 [Service]
 Type=oneshot
 ExecStart=/usr/local/sbin/nic-namer.sh
-ExecStartPost=/bin/udevadm control --reload-rules
+ExecStartPost=udevadm control --reload-rules
 
 [Install]
 WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=Weston socket
+
+[Socket]
+ListenStream=%t/wayland-0
+

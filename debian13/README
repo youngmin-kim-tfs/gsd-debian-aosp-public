@@ -32,14 +32,14 @@
         > resizepart 3 100%
         > print (to check the size)
         > quit
-      - e2fsck -f /dev/sda3
       - resize2fs /dev/sda3
    g. Unmount and remove USB
    h. Reboot with the disk drive (/dev/sda)
 
 4. Install Android emulator
-   a. Download Android SDK (android.tgz) from:
-      https://lsg-thermofisher.atlassian.net/wiki/spaces/MONARCH/pages/98075180/Builds
+   a. If not mounted, mount the USB (/media/debian/data)
+   b. Download Android SDK:
+      https://github.com/youngmin-kim-tfs/gsd-debian-aosp/releases/download/android-sdk/android.tgz
    b. Untar android.tgz to /data/opt
       - sudo tar zxvf /media/debian/data/android.tgz -C /data/opt
    c. Change to /data/opt/android/avd
@@ -52,40 +52,52 @@
    c. Open /data/opt/InstrumentServer/Config/system.ini
       - Change devicemask to DEV:sd[b-z]*
    d. Open /data/opt/InstrumentServer/Config/locations.ini
-      - Change [experiments] path to /data/experiments
-      - Change [usbdrive] path to /media/usb0
-      - Change [android] path to /data/opt/android
-   e. Open SCPIServer/scpiSession.py
-      - Change to:
-        key = hmac.new(secret, challenge.endoe('utf-8'), md5).hexdigest()
-   f. Open /data/opt/InstrumentServer/Methods/android.scpi
-      - Comment out: ===> NOTE: this needs to be done after emulator launched
-        ### Hostname update
-        ### Timezone update
-   g. Launch IS:
+      - Change [experiments] path to /shared/experiments
+   e. Launch IS:
       - sudo /bin/python3 /data/opt/InstrumentServer/instrument.py
 
 6. Run 3200.jar
    a. Download 3200.jar:
-      http://10.253.253.198/job/Monarch-DataCollection-AOSP/lastSuccessfulBuild/artifact/3200/build/libs/3200.jar
+      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/3200.jar
    b. Move 3200.jar to /data/opt/Monarch/
 
 7. Prepare KB
    a. Download KB:
-      http://10.253.253.198/job/Monarch-KB/lastSuccessfulBuild/artifact/Basecaller-KB%201.4.2.9_patch.tar.gz
+      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/kb.tar.gz
    b. Untar kb.tar.gz to /data/opt/Monarch/KB/
 
 8. Download DataCollection SW
-   a. Download DataCollection SW from:
-      http://10.253.253.198/job/Monarch-DataCollection-AOSP/
+   a. Download DataCollection SW:
+      https://github.com/youngmin-kim-tfs/gsd-debian-aosp-public/releases/download/android-sdk/DataCollection-release-1.10-1-6317120.apk
    b. Move apk to /data/opt/Monarch/
 
 9. Run Monarch
     a. Open terminal and change to /data/opt/Monarch
-    b. Open /data/opt/Monarch/launcher.sh
-    c. Check and change APK file name, accordinlgy, in launcher.sh
     b. Run Monarch:
        - ./launcher.sh
 
+
+
+
+
+Secure Boot
+
+* Virtual Box
+
+1. Press ESC at start up to go into UEFI setting
+2. Select 'Device Manager' -> 'Secure Boot Configuration'
+3, Go to 'Attempt Secure Boot' and check on 'X'
+3. Set 'Secure Boot Mode' to <Custom Mode>
+4. Select 'Reset Secure Boot Keys'
+5. Select 'Yes' to initialize all keys and databases.
+7. Press F10 and then 'Y' to save the changes.
+8. Press 'ESC' twice to go back to main menu.
+9. Select 'Boot Manager'.
+10. Select the USB disk.
+
+* Installation
+1. cd installer
+2. ./00-image.sh
+3. 
 
 

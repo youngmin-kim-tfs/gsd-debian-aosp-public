@@ -1,0 +1,12 @@
+[Unit]
+Description=Boot Integrity Check (TPM2 Meausred Boot)
+DefaultDependencies=no
+Before=multi-user.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/check-boot-integrity.sh
+
+[Install]
+WantedBy=multi-user.target

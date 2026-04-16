@@ -1,0 +1,23 @@
+[ req ]
+default_bits       = 4096
+distinguished_name = req_distinguished_name
+x509_extensions    = v3_req
+prompt             = no
+
+[ req_distinguished_name ]
+C  = US
+ST = CA
+L  = Local
+O  = RDP
+OU = Display
+CN = rdp.local
+
+[ v3_req ]
+subjectAltName   = @alt_names
+basicConstraints = CA:FALSE
+keyUsage         = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+
+[ alt_names ]
+DNS.1 = rdp.local
+IP.1  = 127.0.0.1

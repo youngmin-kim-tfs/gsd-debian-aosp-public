@@ -1,0 +1,11 @@
+[Unit]
+Description=Splash service
+After=weston.service
+Wants=weston.service
+
+[Service]
+Type=simple
+ExecStart=/home/kiosk/.config/splash.sh
+
+[Install]
+WantedBy=kiosk-session.target
